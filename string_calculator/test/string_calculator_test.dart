@@ -38,5 +38,13 @@ void main() {
       int result = stringCalculator.findDigitsSum('//;\n1;2', ';');
       expect(result, 3);
     });
+
+    test('Sum of numbers in a string containing negative numbers', () {
+      expect(
+          () => stringCalculator.findDigitsSum('1,2,-3,4,-5,6', ','),
+          throwsA(
+            predicate((e) => e is FormatException && e.message == 'Negative numbers not allowed: -3,-5'),
+          ));
+    });
   });
 }
