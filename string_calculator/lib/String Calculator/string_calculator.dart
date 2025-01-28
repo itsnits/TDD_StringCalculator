@@ -4,10 +4,16 @@ class StringCalculator {
     if (text == '') {
       return 0;
     } else {
-      List<dynamic> li = text.split(',');
+      List<dynamic> li = text.split(delimiter);
       for (var item in li) {
         if (int.tryParse(item) == null) {
-          throw FormatException('Alphanumeric Values are not allowed: $text');
+          String temp = '';
+          for (var item in li) {
+            if (int.tryParse(item) == null) {
+              temp += '$item,';
+            }
+          }
+          throw FormatException('Alphanumeric values are not allowed: ${temp.substring(0, temp.length - 1)}');
         } else {
           res = res + int.parse(item);
         }
