@@ -53,5 +53,10 @@ void main() {
           throwsA(
               predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: 45a,dc')));
     });
+
+    test('Sum of numbers in a string seperated by a line', () {
+      int result = stringCalculator.findDigitsSum('1\n2,3', ',');
+      expect(result, 6);
+    });
   });
 }
