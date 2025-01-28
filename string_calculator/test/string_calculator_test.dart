@@ -58,5 +58,10 @@ void main() {
       int result = stringCalculator.findDigitsSum('1\n2,3', ',');
       expect(result, 6);
     });
+
+    test('Sum of numbers in a string seperated by a new line and other delimiter', () {
+      int result = stringCalculator.findDigitsSum('//;\n1;2', ';');
+      expect(result, 3);
+    });
   });
 }
