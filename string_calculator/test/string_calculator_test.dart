@@ -20,9 +20,8 @@ void main() {
     });
 
     test('Sum of numbers in string containing alphanumeric value', () {
-      int result = stringCalculator.findDigitsSum('ab5', '');
       expect(
-        result,
+        () => stringCalculator.findDigitsSum('ab5', ''),
         throwsA(
           predicate((e) => e is FormatException && e.message == 'Alphanumeric Values are not allowed'),
         ),

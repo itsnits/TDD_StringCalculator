@@ -3,7 +3,11 @@ class StringCalculator {
     if (text == '') {
       return 0;
     } else {
-      return int.parse(text);
+      if (int.tryParse(text) != null) {
+        return int.parse(text);
+      } else {
+        throw const FormatException('Alphanumeric Values are not allowed');
+      }
     }
   }
 }
