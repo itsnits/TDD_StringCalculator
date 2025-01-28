@@ -23,7 +23,7 @@ void main() {
       expect(
         () => stringCalculator.findDigitsSum('ab5', ''),
         throwsA(
-          predicate((e) => e is FormatException && e.message == 'Alphanumeric Values are not allowed: ab5'),
+          predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: ab5'),
         ),
       );
     });
@@ -31,6 +31,15 @@ void main() {
     test('Sum of two numbers in a string seperated by comma', () {
       int result = stringCalculator.findDigitsSum('1,5', ',');
       expect(result, 6);
+    });
+
+    test('Sum of numbers in a string consisting of alphanumeric value', () {
+      expect(
+        () => stringCalculator.findDigitsSum('12,ab', ','),
+        throwsA(
+          predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: ab'),
+        ),
+      );
     });
   });
 }
