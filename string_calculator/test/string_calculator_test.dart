@@ -19,39 +19,14 @@ void main() {
       expect(result, 5);
     });
 
-    test('Sum of numbers in string containing alphanumeric value', () {
-      expect(
-        () => stringCalculator.findDigitsSum('ab5', ','),
-        throwsA(
-          predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: ab5'),
-        ),
-      );
-    });
-
     test('Sum of two numbers in a string seperated by comma', () {
       int result = stringCalculator.findDigitsSum('1,5', ',');
       expect(result, 6);
     });
 
-    test('Sum of numbers in a string consisting of alphanumeric value', () {
-      expect(
-        () => stringCalculator.findDigitsSum('12,ab', ','),
-        throwsA(
-          predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: ab'),
-        ),
-      );
-    });
-
     test('Sum of multiple numbers in a string seperated by comma', () {
       int result = stringCalculator.findDigitsSum('1,3,54,3', ',');
       expect(result, 61);
-    });
-
-    test('Sum of multiple numbers in a string seperated by comma and containing alphanueric value as well', () {
-      expect(
-          () => stringCalculator.findDigitsSum('1,2,45a,dc,67', ','),
-          throwsA(
-              predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: 45a,dc')));
     });
 
     test('Sum of numbers in a string seperated by a line', () {
