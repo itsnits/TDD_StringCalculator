@@ -1,3 +1,5 @@
 class StringCalculator {
-  findDigitsSum(String text, String delimiter) {}
+  int findDigitsSum(String text, String delimiter) {
+    return 0;
+  }
 }

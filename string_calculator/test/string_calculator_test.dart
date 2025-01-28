@@ -10,7 +10,7 @@ void main() {
     });
 
     test('Sum of digits in empty string', () {
-      int result = stringCalculator.findDigitsSum('', ',');
+      int result = stringCalculator.findDigitsSum('', '');
       expect(result, 0);
     });
   });
