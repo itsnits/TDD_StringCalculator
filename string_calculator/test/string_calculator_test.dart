@@ -18,5 +18,15 @@ void main() {
       int result = stringCalculator.findDigitsSum('5', '');
       expect(result, 5);
     });
+
+    test('Sum of numbers in string containing alphanumeric value', () {
+      int result = stringCalculator.findDigitsSum('ab5', '');
+      expect(
+        result,
+        throwsA(
+          predicate((e) => e is FormatException && e.message == 'Alphanumeric Values are not allowed'),
+        ),
+      );
+    });
   });
 }
