@@ -6,7 +6,7 @@ class StringCalculator {
       if (int.tryParse(text) != null) {
         return int.parse(text);
       } else {
-        throw const FormatException('Alphanumeric Values are not allowed');
+        throw FormatException('Alphanumeric Values are not allowed: $text');
       }
     }
   }
