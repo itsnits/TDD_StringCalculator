@@ -41,5 +41,17 @@ void main() {
         ),
       );
     });
+
+    test('Sum of multiple numbers in a string seperated by comma', () {
+      int result = stringCalculator.findDigitsSum('1,3,54,3', ',');
+      expect(result, 61);
+    });
+
+    test('Sum of multiple numbers in a string seperated by comma and containing alphanueric value as well', () {
+      expect(
+          () => stringCalculator.findDigitsSum('1,2,45a,dc,67', ','),
+          throwsA(
+              predicate((e) => e is FormatException && e.message == 'Alphanumeric values are not allowed: 45a,dc')));
+    });
   });
 }
