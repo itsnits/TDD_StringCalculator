@@ -4,18 +4,18 @@ class StringCalculator {
     if (text == '') {
       return 0;
     } else {
-      List<dynamic> li = text.split(delimiter);
-      for (var item in li) {
-        if (int.tryParse(item) == null) {
+      List<dynamic> li = text.split(RegExp('[$delimiter\n]'));
+      for (int i = 0; i < li.length; i++) {
+        if (int.tryParse(li[i]) == null) {
           String temp = '';
-          for (var item in li) {
-            if (int.tryParse(item) == null) {
-              temp += '$item,';
+          for (int j = i; j < li.length; j++) {
+            if (int.tryParse(li[j]) == null) {
+              temp += '${li[j]},';
             }
           }
           throw FormatException('Alphanumeric values are not allowed: ${temp.substring(0, temp.length - 1)}');
         } else {
-          res = res + int.parse(item);
+          res = res + int.parse(li[i]);
         }
       }
     }
