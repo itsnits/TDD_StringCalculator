@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:string_calculator/String%20Calculator/string_calculator.dart';
 
 class StringCalculatorWidget extends StatefulWidget {
   const StringCalculatorWidget({super.key});
@@ -11,6 +12,7 @@ class _StringCalculatorWidgetState extends State<StringCalculatorWidget> {
   final TextEditingController _inputController = TextEditingController();
   final TextEditingController _outputController = TextEditingController();
   final TextEditingController _delimiterController = TextEditingController();
+  final StringCalculator _stringCalculator = StringCalculator();
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +79,18 @@ class _StringCalculatorWidgetState extends State<StringCalculatorWidget> {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        _outputController.text = '123';
-                      });
+                      try {
+                        int res = _stringCalculator.findDigitsSum(_inputController.text, _delimiterController.text);
+                        setState(() {
+                          _outputController.text = res.toString();
+                        });
+                      } catch (e) {
+                        if (e is FormatException) {
+                          _showDialogBox(context, e.message);
+                        } else {
+                          _showDialogBox(context, 'An unknown error occurred.');
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey.shade200,
@@ -101,5 +112,27 @@ class _StringCalculatorWidgetState extends State<StringCalculatorWidget> {
         ),
       ),
     );
+  }
+
+  void _showDialogBox(BuildContext context, String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error!'),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    _outputController.text = '';
+                  });
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        });
   }
 }
